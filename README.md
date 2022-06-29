@@ -20,7 +20,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+screws = SatisfactoryCalculator::Calc.new(1200)
+screws.call # => {:name=>"Screws", :machines=>30.0, :inputs=>[{:name=>"Iron rod", :pieces_total=>300.0, :machines=>20.0}, {:name=>"Iron ingot", :pieces_total=>300.0, :machines=>10.0}, {:name=>"Iron", :pieces_total=>300.0, :machines=>10.0}]}
+```
 
 ## Development
 
