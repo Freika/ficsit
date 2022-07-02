@@ -11,6 +11,8 @@ module SatisfactoryCalculator
   class Calc
     attr_reader :inputs, :tables
 
+    RAW_RESOURCES = %w[Iron Copper Coal Caterium].freeze
+
     def initialize(recipe_name, amount, debug: false)
       @amount = amount
       @recipe_name = recipe_name
@@ -29,7 +31,10 @@ module SatisfactoryCalculator
 
       puts draw_tables
 
-      { name: recipe['name'], machines: machines, inputs: inputs } if @debug
+      total_data = { name: recipe['name'], machines: machines, inputs: inputs }
+
+      puts total_raw_resources_table(total_data)
+      puts total_data if @debug
     end
 
     def recipes
@@ -90,6 +95,18 @@ module SatisfactoryCalculator
       end
     end
 
+    def total_raw_resources_table(total_data)
+      materials = total_data[:inputs].flatten.select { |row| RAW_RESOURCES.include?(row[:name]) }
+
+      rows = RAW_RESOURCES.map do |resource|
+        total = materials.select { |r| r[:name] == resource }.sum { |r| r[:pieces_total] }
+
+        [resource, { value: total, alignment: :right }]
+      end
+
+      Terminal::Table.new(title: 'Total Resources', rows: rows, style: table_style)
+    end
+
     def resource(name)
       recipe = recipes.find { |a| a['name'] == name }
 
@@ -99,7 +116,7 @@ module SatisfactoryCalculator
     end
 
     def table_style
-      { border: :unicode_round, width: 40, padding_left: 3}
+      { border: :unicode_round, width: 40, padding_left: 3 }
     end
   end
 end

@@ -26,10 +26,6 @@
       {
         "name":"Iron",
         "pieces":30
-      },
-      {
-        "name":"Copper",
-        "pieces":30
       }
     ]
   },
@@ -101,7 +97,7 @@
     "out":30,
     "in":[
       {
-        "name":"Copper",
+        "name":"Copper Ingot",
         "pieces":15
       }
     ]
@@ -112,6 +108,16 @@
     "in":[
       {
         "name":"Steel Ingot",
+        "pieces":30
+      }
+    ]
+  },
+  {
+    "name":"Copper Ingot",
+    "out":30,
+    "in":[
+      {
+        "name":"Copper",
         "pieces":30
       }
     ]
