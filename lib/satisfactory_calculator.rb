@@ -12,11 +12,12 @@ module SatisfactoryCalculator
     attr_reader :inputs
     attr_reader :tables
 
-    def initialize(recipe_name, amount)
+    def initialize(recipe_name, amount, debug: false)
       @amount = amount
       @recipe_name = recipe_name
       @inputs = []
       @tables = []
+      @debug = debug
     end
 
     def call
@@ -27,13 +28,15 @@ module SatisfactoryCalculator
 
       inputs = @inputs.reverse.reject(&:empty?)
 
-      puts draw_tables
+      draw_tables
 
-      {
-        name: recipe['name'],
-        machines: machines,
-        inputs: inputs
-      }
+      if @debug
+        {
+          name: recipe['name'],
+          machines: machines,
+          inputs: inputs
+        }
+      end
     end
 
     def recipes

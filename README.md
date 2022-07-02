@@ -2,6 +2,10 @@
 
 This is an attempt to automate production calculation for Satisfactory.
 
+## Todo:
+
+- [ ] Unify same resources required on different steps of production to single table to avoid resource diplication
+
 ## Installation
 
 Add this line to your application's Gemfile:
