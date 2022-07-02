@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require_relative "satisfactory_calculator/version"
-require 'byebug'
+require 'pry'
 require 'terminal-table'
+require 'json'
 
 module SatisfactoryCalculator
   class Error < StandardError; end
@@ -11,37 +12,33 @@ module SatisfactoryCalculator
     attr_reader :inputs
     attr_reader :tables
 
-    def initialize(amount)
+    def initialize(recipe_name, amount)
       @amount = amount
+      @recipe_name = recipe_name
       @inputs = []
       @tables = []
     end
 
     def call
-      screws = recipes.find { |a| a[:name] == 'Screws' }
+      recipe = recipes.find { |a| a['name'] == @recipe_name }
 
-      machines = machines_amount(@amount, screws[:out])
-      @inputs << calculate_input(screws, machines)
+      machines = machines_amount(@amount, recipe['out'])
+      @inputs << calculate_input(recipe, machines)
 
       inputs = @inputs.reverse.reject(&:empty?)
 
       puts draw_tables
 
       {
-        name: screws[:name],
+        name: recipe['name'],
         machines: machines,
         inputs: inputs
       }
     end
 
     def recipes
-      [
-        { name: 'Screws', out: 40, in: [{ name: 'Iron rod', pieces: 10 }] },
-        { name: 'Iron rod', out: 15, in: [{ name: 'Iron ingot', pieces: 15 }] },
-        { name: 'Iron ingot', out: 30, in: [{ name: 'Iron', pieces: 30 }, { name: 'Copper', pieces: 30 }] },
-        { name: 'Iron', out: 30, in: [] },
-        { name: 'Copper', out: 30, in: [] }
-      ]
+      file = File.open('lib/recipes.json')
+      JSON.parse(file.read)
     end
 
     def machines_amount(amount, out)
@@ -51,28 +48,30 @@ module SatisfactoryCalculator
     def calculate_input(recipe, machines)
       table_rows = []
 
-      calculated = recipe[:in].flat_map do |input_resource|
-        pieces_total = (machines * input_resource[:pieces])
+      calculated = recipe['in'].flat_map do |input_resource|
+        pieces_total = (machines * input_resource['pieces'])
 
-        recipe_found = recipes.find { |a| a[:name] == input_resource[:name] }
-        machines_number = machines_amount(pieces_total, recipe_found[:out])
+        recipe_found = recipes.find { |a| a['name'] == input_resource['name'] }
+        raise StandardError, "Recipe \"#{input_resource['name']}\" not found" if recipe_found.nil?
+
+        machines_number = machines_amount(pieces_total, recipe_found['out'])
         result = {
-          name: input_resource[:name],
+          name: input_resource['name'],
           pieces_total: pieces_total,
           machines: machines_number
         }
 
         @inputs << calculate_input(recipe_found, machines_number)
-        table_rows << table_row(input_resource[:name], pieces_total)
+        table_rows << table_row(input_resource['name'], pieces_total)
 
         result
       end
 
       table_data = {
-        name: recipe[:name],
+        name: recipe['name'],
         rows: table_rows,
         machines: machines.truncate(2),
-        output: (recipe[:out] * machines).truncate(3)
+        output: (recipe['out'] * machines).truncate(3)
       }
 
       @tables << table_data
@@ -91,7 +90,6 @@ module SatisfactoryCalculator
         rows = data[:rows]
         rows << :separator
         rows << ['Machines', data[:machines]]
-        rows << :separator
         rows << ['Output', data[:output]]
 
         puts Terminal::Table.new(

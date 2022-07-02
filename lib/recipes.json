@@ -1,0 +1,133 @@
+[
+  {
+    "name":"Screws",
+    "out":40,
+    "in":[
+      {
+        "name":"Iron Rod",
+        "pieces":10
+      }
+    ]
+  },
+  {
+    "name":"Iron Rod",
+    "out":15,
+    "in":[
+      {
+        "name":"Iron Ingot",
+        "pieces":15
+      }
+    ]
+  },
+  {
+    "name":"Iron Ingot",
+    "out":30,
+    "in":[
+      {
+        "name":"Iron",
+        "pieces":30
+      },
+      {
+        "name":"Copper",
+        "pieces":30
+      }
+    ]
+  },
+  {
+    "name":"Iron",
+    "out":0,
+    "in":[
+
+    ]
+  },
+  {
+    "name":"Copper",
+    "out":0,
+    "in":[
+
+    ]
+  },
+  {
+    "name":"Coal",
+    "out":0,
+    "in":[
+
+    ]
+  },
+  {
+    "name":"Motor",
+    "out":5,
+    "in":[
+      {
+        "name":"Rotor",
+        "pieces":10
+      },
+      {
+        "name":"Stator",
+        "pieces":10
+      }
+    ]
+  },
+  {
+    "name":"Stator",
+    "out":5,
+    "in":[
+      {
+        "name":"Steel Pipe",
+        "pieces":15
+      },
+      {
+        "name":"Wire",
+        "pieces":40
+      }
+    ]
+  },
+  {
+    "name":"Rotor",
+    "out":4,
+    "in":[
+      {
+        "name":"Iron Rod",
+        "pieces":20
+      },
+      {
+        "name":"Screws",
+        "pieces":100
+      }
+    ]
+  },
+  {
+    "name":"Wire",
+    "out":30,
+    "in":[
+      {
+        "name":"Copper",
+        "pieces":15
+      }
+    ]
+  },
+  {
+    "name":"Steel Pipe",
+    "out":20,
+    "in":[
+      {
+        "name":"Steel Ingot",
+        "pieces":30
+      }
+    ]
+  },
+  {
+    "name":"Steel Ingot",
+    "out":45,
+    "in":[
+      {
+        "name":"Iron",
+        "pieces":45
+      },
+      {
+        "name":"Coal",
+        "pieces":45
+      }
+    ]
+  }
+]
