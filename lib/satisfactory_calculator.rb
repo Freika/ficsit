@@ -9,8 +9,7 @@ module SatisfactoryCalculator
   class Error < StandardError; end
 
   class Calc
-    attr_reader :inputs
-    attr_reader :tables
+    attr_reader :inputs, :tables
 
     def initialize(recipe_name, amount, debug: false)
       @amount = amount
@@ -21,22 +20,16 @@ module SatisfactoryCalculator
     end
 
     def call
-      recipe = recipes.find { |a| a['name'] == @recipe_name }
+      recipe = resource(@recipe_name)
 
       machines = machines_amount(@amount, recipe['out'])
       @inputs << calculate_input(recipe, machines)
 
       inputs = @inputs.reverse.reject(&:empty?)
 
-      draw_tables
+      puts draw_tables
 
-      if @debug
-        {
-          name: recipe['name'],
-          machines: machines,
-          inputs: inputs
-        }
-      end
+      { name: recipe['name'], machines: machines, inputs: inputs } if @debug
     end
 
     def recipes
@@ -53,11 +46,9 @@ module SatisfactoryCalculator
 
       calculated = recipe['in'].flat_map do |input_resource|
         pieces_total = (machines * input_resource['pieces'])
-
-        recipe_found = recipes.find { |a| a['name'] == input_resource['name'] }
-        raise StandardError, "Recipe \"#{input_resource['name']}\" not found" if recipe_found.nil?
-
+        recipe_found = resource(input_resource['name'])
         machines_number = machines_amount(pieces_total, recipe_found['out'])
+
         result = {
           name: input_resource['name'],
           pieces_total: pieces_total,
@@ -83,23 +74,32 @@ module SatisfactoryCalculator
     end
 
     def table_row(name, pieces_total)
-      [name, pieces_total]
+      [name, { value: pieces_total, alignment: :right }]
     end
 
     def draw_tables
-      @tables.reverse.each do |data|
+      @tables.reverse.map do |data|
         next if data[:rows].empty?
 
         rows = data[:rows]
         rows << :separator
-        rows << ['Machines', data[:machines]]
-        rows << ['Output', data[:output]]
+        rows << ['Machines', { value: data[:machines], alignment: :right }]
+        rows << ['Output', { value: data[:output], alignment: :right }]
 
-        puts Terminal::Table.new(
-          title: data[:name],
-          rows: rows
-        )
+        Terminal::Table.new(title: data[:name], rows: rows, style: table_style)
       end
+    end
+
+    def resource(name)
+      recipe = recipes.find { |a| a['name'] == name }
+
+      raise StandardError, "Recipe \"#{name}\" not found" if recipe.nil?
+
+      recipe
+    end
+
+    def table_style
+      { border: :unicode_round, width: 40, padding_left: 3}
     end
   end
 end
