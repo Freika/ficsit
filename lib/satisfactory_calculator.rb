@@ -105,10 +105,13 @@ module SatisfactoryCalculator
     def total_raw_resources_table(total_data)
       materials = total_data[:inputs].flatten.select { |row| RAW_RESOURCES.include?(row[:name]) }
 
-      rows = RAW_RESOURCES.map do |resource|
-        total = materials.select { |r| r[:name] == resource }.sum { |r| r[:pieces_total] }
+      rows = []
 
-        [resource, { value: total, alignment: :right }]
+      RAW_RESOURCES.each do |resource|
+        total = materials.select { |r| r[:name] == resource }.sum { |r| r[:pieces_total] }
+        next if total.zero?
+
+        rows << [resource, { value: total, alignment: :right }]
       end
 
       Terminal::Table.new(title: 'Total Resources', rows: rows, style: table_style)

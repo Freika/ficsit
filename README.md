@@ -4,17 +4,10 @@ This is an attempt to automate production calculation for Satisfactory.
 
 ## Todo:
 
-- [ ] Unify same resources required on different steps of production to single table to avoid resource diplication
+- [x] Unify same resources required on different steps of production to single table to avoid resource diplication
+- [ ] Reverse calculation for electricity: provide amount of resource (coal, crude oil, etc.) to calculate amount of factories to produce energy
 
 ## Known issues
-
-There is an unexpected rounding.
-
-```
-SatisfactoryCalculator::Calc.new("Encased Industrial Beam", 18).call # => 18/min
-SatisfactoryCalculator::Calc.new("Encased Industrial Beam", 17).call # => 12/min
-SatisfactoryCalculator::Calc.new("Plastic", 20).call
-```
 
 ## Installation
 
