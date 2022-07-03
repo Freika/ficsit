@@ -37,6 +37,13 @@
     ]
   },
   {
+    "name":"Limestone",
+    "out":0,
+    "in":[
+
+    ]
+  },
+  {
     "name":"Copper",
     "out":0,
     "in":[
@@ -133,6 +140,40 @@
       {
         "name":"Coal",
         "pieces":45
+      }
+    ]
+  },
+  {
+    "name":"Encased Industrial Beam",
+    "out":6,
+    "in":[
+      {
+        "name":"Steel Beam",
+        "pieces":24
+      },
+      {
+        "name":"Concrete",
+        "pieces":30
+      }
+    ]
+  },
+  {
+    "name":"Concrete",
+    "out":15,
+    "in":[
+      {
+        "name":"Limestone",
+        "pieces":45
+      }
+    ]
+  },
+  {
+    "name":"Steel Beam",
+    "out":15,
+    "in":[
+      {
+        "name":"Steel Ingot",
+        "pieces":60
       }
     ]
   }

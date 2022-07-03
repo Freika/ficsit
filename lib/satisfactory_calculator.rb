@@ -11,7 +11,7 @@ module SatisfactoryCalculator
   class Calc
     attr_reader :inputs, :tables
 
-    RAW_RESOURCES = %w[Iron Copper Coal Caterium].freeze
+    RAW_RESOURCES = %w[Iron Copper Coal Caterium Limestone].freeze
 
     def initialize(recipe_name, amount, debug: false)
       @amount = amount
