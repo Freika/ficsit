@@ -11,7 +11,7 @@ module SatisfactoryCalculator
   class Calc
     attr_reader :inputs, :tables
 
-    RAW_RESOURCES = %w[Iron Copper Coal Caterium Limestone].freeze
+    RAW_RESOURCES = %w[Iron Copper Coal Caterium Limestone Crude\ Oil].freeze
 
     def initialize(recipe_name, amount, debug: false)
       @amount = amount
@@ -25,6 +25,7 @@ module SatisfactoryCalculator
       recipe = resource(@recipe_name)
 
       machines = machines_amount(@amount, recipe['out'])
+
       @inputs << calculate_input(recipe, machines)
 
       inputs = @inputs.reverse.reject(&:empty?)
@@ -43,7 +44,9 @@ module SatisfactoryCalculator
     end
 
     def machines_amount(amount, out)
-      (amount / out).to_f
+      return 0 if out.empty?
+
+      amount.to_f / out.first['pieces']
     end
 
     def calculate_input(recipe, machines)
@@ -70,7 +73,9 @@ module SatisfactoryCalculator
         name: recipe['name'],
         rows: table_rows,
         machines: machines.truncate(2),
-        output: (recipe['out'] * machines).truncate(3)
+        output: recipe['out'].map do |r|
+          { name: r['name'], pieces: (r['pieces'] * machines).truncate(3) }
+        end
       }
 
       @tables << table_data
@@ -89,7 +94,9 @@ module SatisfactoryCalculator
         rows = data[:rows]
         rows << :separator
         rows << ['Machines', { value: data[:machines], alignment: :right }]
-        rows << ['Output', { value: data[:output], alignment: :right }]
+        data[:output].each do |output|
+          rows << ["Out #{output[:name]}", { value: output[:pieces], alignment: :right }]
+        end
 
         Terminal::Table.new(title: data[:name], rows: rows, style: table_style)
       end

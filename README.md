@@ -6,6 +6,16 @@ This is an attempt to automate production calculation for Satisfactory.
 
 - [ ] Unify same resources required on different steps of production to single table to avoid resource diplication
 
+## Known issues
+
+There is an unexpected rounding.
+
+```
+SatisfactoryCalculator::Calc.new("Encased Industrial Beam", 18).call # => 18/min
+SatisfactoryCalculator::Calc.new("Encased Industrial Beam", 17).call # => 12/min
+SatisfactoryCalculator::Calc.new("Plastic", 20).call
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:

@@ -44,6 +44,11 @@
     ]
   },
   {
+    "name":"Crude Oil",
+    "out":[],
+    "in":[]
+  },
+  {
     "name":"Copper",
     "out":0,
     "in":[
@@ -174,6 +179,25 @@
       {
         "name":"Steel Ingot",
         "pieces":60
+      }
+    ]
+  },
+  {
+    "name":"Plastic",
+    "out":[
+      {
+        "name":"Plastic",
+        "pieces":20
+      },
+      {
+        "name":"Heavy Oil Residue",
+        "pieces":10
+      }
+    ],
+    "in":[
+      {
+        "name":"Crude Oil",
+        "pieces":30
       }
     ]
   }
