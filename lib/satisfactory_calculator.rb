@@ -64,7 +64,7 @@ module SatisfactoryCalculator
         }
 
         @inputs << calculate_input(recipe_found, machines_number)
-        table_rows << table_row(input_resource['name'], pieces_total)
+        table_rows << table_row(input_resource['name'], pieces_total.truncate(2))
 
         result
       end
