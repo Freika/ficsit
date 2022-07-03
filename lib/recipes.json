@@ -1,7 +1,12 @@
 [
   {
     "name":"Screws",
-    "out":40,
+    "out":[
+      {
+        "name":"Screws",
+        "pieces":40
+      }
+    ],
     "in":[
       {
         "name":"Iron Rod",
@@ -11,7 +16,12 @@
   },
   {
     "name":"Iron Rod",
-    "out":15,
+    "out":[
+      {
+        "name":"Iron Rod",
+        "pieces":15
+      }
+    ],
     "in":[
       {
         "name":"Iron Ingot",
@@ -21,7 +31,12 @@
   },
   {
     "name":"Iron Ingot",
-    "out":30,
+    "out":[
+      {
+        "name":"Iron Ingot",
+        "pieces":30
+      }
+    ],
     "in":[
       {
         "name":"Iron",
@@ -31,40 +46,62 @@
   },
   {
     "name":"Iron",
-    "out":0,
-    "in":[
-
-    ]
+    "out":[
+      {
+        "name":"Iron",
+        "pieces":0
+      }
+    ],
+    "in":[]
   },
   {
     "name":"Limestone",
-    "out":0,
-    "in":[
-
-    ]
+    "out":[
+      {
+        "name":"Limestone",
+        "pieces":0
+      }
+    ],
+    "in":[]
   },
   {
     "name":"Crude Oil",
-    "out":[],
+    "out":[
+      {
+        "name":"Crude Oil",
+        "pieces":0
+      }
+    ],
     "in":[]
   },
   {
     "name":"Copper",
-    "out":0,
-    "in":[
-
-    ]
+    "out":[
+      {
+        "name":"Copper",
+        "pieces":0
+      }
+    ],
+    "in":[]
   },
   {
     "name":"Coal",
-    "out":0,
-    "in":[
-
-    ]
+    "out":[
+      {
+        "name":"Coal",
+        "pieces":0
+      }
+    ],
+    "in":[]
   },
   {
     "name":"Motor",
-    "out":5,
+    "out":[
+      {
+        "name":"Motor",
+        "pieces":5
+      }
+    ],
     "in":[
       {
         "name":"Rotor",
@@ -78,7 +115,12 @@
   },
   {
     "name":"Stator",
-    "out":5,
+    "out":[
+      {
+        "name":"Stator",
+        "pieces":5
+      }
+    ],
     "in":[
       {
         "name":"Steel Pipe",
@@ -92,7 +134,12 @@
   },
   {
     "name":"Rotor",
-    "out":4,
+    "out":[
+      {
+        "name":"Rotor",
+        "pieces":4
+      }
+    ],
     "in":[
       {
         "name":"Iron Rod",
@@ -106,7 +153,12 @@
   },
   {
     "name":"Wire",
-    "out":30,
+    "out":[
+      {
+        "name":"Wire",
+        "pieces":30
+      }
+    ],
     "in":[
       {
         "name":"Copper Ingot",
@@ -116,7 +168,12 @@
   },
   {
     "name":"Steel Pipe",
-    "out":20,
+    "out":[
+      {
+        "name":"Steel Pipe",
+        "pieces":20
+      }
+    ],
     "in":[
       {
         "name":"Steel Ingot",
@@ -126,7 +183,12 @@
   },
   {
     "name":"Copper Ingot",
-    "out":30,
+    "out":[
+      {
+        "name":"Copper Ingot",
+        "pieces":30
+      }
+    ],
     "in":[
       {
         "name":"Copper",
@@ -136,7 +198,12 @@
   },
   {
     "name":"Steel Ingot",
-    "out":45,
+    "out":[
+      {
+        "name":"Steel Ingot",
+        "pieces":45
+      }
+    ],
     "in":[
       {
         "name":"Iron",
@@ -150,7 +217,12 @@
   },
   {
     "name":"Encased Industrial Beam",
-    "out":6,
+    "out":[
+      {
+        "name":"Encased Industrial Beam",
+        "pieces":6
+      }
+    ],
     "in":[
       {
         "name":"Steel Beam",
@@ -164,7 +236,12 @@
   },
   {
     "name":"Concrete",
-    "out":15,
+    "out":[
+      {
+        "name":"Concrete",
+        "pieces":15
+      }
+    ],
     "in":[
       {
         "name":"Limestone",
@@ -174,7 +251,12 @@
   },
   {
     "name":"Steel Beam",
-    "out":15,
+    "out":[
+      {
+        "name":"Steel Beam",
+        "pieces":15
+      }
+    ],
     "in":[
       {
         "name":"Steel Ingot",
