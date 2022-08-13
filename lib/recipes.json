@@ -250,6 +250,31 @@
     ]
   },
   {
+    "name":"Petroleum Coke",
+    "out":[
+      {
+        "name":"Petroleum Coke",
+        "pieces":120
+      }
+    ],
+    "in":[
+      {
+        "name":"Heavy Oil Residue",
+        "pieces":40
+      }
+    ]
+  },
+  {
+    "name":"Heavy Oil Residue",
+    "out":[
+      {
+        "name":"Heavy Oil Residue",
+        "pieces":0
+      }
+    ],
+    "in":[]
+  },
+  {
     "name":"Steel Beam",
     "out":[
       {
@@ -279,6 +304,105 @@
     "in":[
       {
         "name":"Crude Oil",
+        "pieces":30
+      }
+    ]
+  },
+  {
+    "name":"Rubber",
+    "out":[
+      {
+        "name":"Rubber",
+        "pieces":20
+      },
+      {
+        "name":"Heavy Oil Residue",
+        "pieces":20
+      }
+    ],
+    "in":[
+      {
+        "name":"Crude Oil",
+        "pieces":30
+      }
+    ]
+  },
+  {
+    "name":"Heavy Modular Frame",
+    "out":[
+      {
+        "name":"Heavy Modular Frame",
+        "pieces":2
+      }
+    ],
+    "in":[
+      {
+        "name":"Modular Frame",
+        "pieces":10
+      },
+      {
+        "name":"Steel Pipe",
+        "pieces":30
+      },
+      {
+        "name":"Encased Industrial Beam",
+        "pieces":10
+      },
+      {
+        "name":"Screws",
+        "pieces":200
+      }
+    ]
+  },
+  {
+    "name":"Modular Frame",
+    "out":[
+      {
+        "name":"Modular Frame",
+        "pieces":2
+      }
+    ],
+    "in":[
+      {
+        "name":"Stitched Iron Plate",
+        "pieces":3
+      },
+      {
+        "name":"Iron Rod",
+        "pieces":12
+      }
+    ]
+  },
+  {
+    "name":"Stitched Iron Plate",
+    "out":[
+      {
+        "name":"Reinforced Iron Plate",
+        "pieces":5.625
+      }
+    ],
+    "in":[
+      {
+        "name":"Iron Plate",
+        "pieces":18.75
+      },
+      {
+        "name":"Wire",
+        "pieces":37.5
+      }
+    ]
+  },
+  {
+    "name":"Iron Plate",
+    "out":[
+      {
+        "name":"Iron Plate",
+        "pieces":20
+      }
+    ],
+    "in":[
+      {
+        "name":"Iron Ingot",
         "pieces":30
       }
     ]

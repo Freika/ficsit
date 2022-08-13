@@ -11,7 +11,10 @@ module SatisfactoryCalculator
   class Calc
     attr_reader :inputs, :tables
 
-    RAW_RESOURCES = %w[Iron Copper Coal Caterium Limestone Crude\ Oil].freeze
+    RAW_RESOURCES = [
+      'Iron', 'Copper', 'Coal', 'Caterium', 'Limestone',
+      'Crude Oil', 'Heavy Oil Residue'
+    ].freeze
 
     def initialize(recipe_name, amount, debug: false)
       @amount = amount
@@ -126,7 +129,7 @@ module SatisfactoryCalculator
     end
 
     def table_style
-      { border: :unicode_round, width: 40, padding_left: 3 }
+      { border: :unicode_round, width: 50, padding_left: 3 }
     end
   end
 end
