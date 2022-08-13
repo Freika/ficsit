@@ -25,6 +25,14 @@ module SatisfactoryCalculator
     end
 
     def call
+      total_data = calculate_raw_data
+
+      puts draw_tables
+      puts total_raw_resources_table(total_data)
+      puts total_data if @debug
+    end
+
+    def calculate_raw_data
       recipe = resource(@recipe_name)
 
       machines = machines_amount(@amount, recipe['out'])
@@ -33,12 +41,7 @@ module SatisfactoryCalculator
 
       inputs = @inputs.reverse.reject(&:empty?)
 
-      puts draw_tables
-
-      total_data = { name: recipe['name'], machines: machines, inputs: inputs }
-
-      puts total_raw_resources_table(total_data)
-      puts total_data if @debug
+      { name: recipe['name'], machines: machines, inputs: inputs }
     end
 
     def recipes
