@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
-require_relative "lib/satisfactory_calculator/version"
+require_relative "lib/ficsit/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "satisfactory_calculator"
-  spec.version = SatisfactoryCalculator::VERSION
+  spec.name = "ficsit"
+  spec.version = Ficsit::VERSION
   spec.authors = ["Eugene Burmakin"]
   spec.email = ["iamfrey@gmail.com"]
 
   spec.summary = "Write a short summary, because RubyGems requires one."
   spec.description = "Write a longer description or delete this line."
-  spec.homepage = "https://github.com/Freika/satisfactory_calculator"
+  spec.homepage = "https://github.com/Freika/ficsit"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/Freika/satisfactory_calculator"
-  spec.metadata["changelog_uri"] = "https://github.com/Freika/satisfactory_calculator/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/Freika/ficsit"
+  spec.metadata["changelog_uri"] = "https://github.com/Freika/ficsit/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

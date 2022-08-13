@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in satisfactory_calculator.gemspec
+# Specify your gem's dependencies in ficsit.gemspec
 gemspec
 
 gem "rake", "~> 13.0"

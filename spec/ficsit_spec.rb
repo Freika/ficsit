@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe SatisfactoryCalculator do
+RSpec.describe Ficsit do
   it "has a version number" do
-    expect(SatisfactoryCalculator::VERSION).not_to be nil
+    expect(Ficsit::VERSION).not_to be nil
   end
 
   it "does something useful" do

@@ -1,4 +1,4 @@
-# SatisfactoryCalculator
+# Ficsit
 
 This is an attempt to automate production calculation for Satisfactory.
 
@@ -19,7 +19,7 @@ This is an attempt to automate production calculation for Satisfactory.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'satisfactory_calculator'
+gem 'ficsit'
 ```
 
 And then execute:
@@ -28,12 +28,12 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install satisfactory_calculator
+    $ gem install ficsit
 
 ## Usage
 
 ```ruby
-screws = SatisfactoryCalculator::Calc.new(1200)
+screws = Ficsit::Calc.new(1200)
 screws.call # => {:name=>"Screws", :machines=>30.0, :inputs=>[{:name=>"Iron rod", :pieces_total=>300.0, :machines=>20.0}, {:name=>"Iron ingot", :pieces_total=>300.0, :machines=>10.0}, {:name=>"Iron", :pieces_total=>300.0, :machines=>10.0}]}
 ```
 
@@ -45,7 +45,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/satisfactory_calculator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/satisfactory_calculator/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ficsit. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/ficsit/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -53,4 +53,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the SatisfactoryCalculator project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/satisfactory_calculator/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Ficsit project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/ficsit/blob/master/CODE_OF_CONDUCT.md).

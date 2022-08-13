@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative "satisfactory_calculator/version"
+require_relative "ficsit/version"
 require 'pry'
 require 'terminal-table'
 require 'json'
 
-module SatisfactoryCalculator
+module Ficsit
   class Error < StandardError; end
 
   class Calc
