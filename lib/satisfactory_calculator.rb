@@ -28,14 +28,15 @@ module SatisfactoryCalculator
       total_data = calculate_raw_data
 
       puts draw_tables
+      puts '=========================================================='
       puts total_raw_resources_table(total_data)
       puts total_data if @debug
     end
 
+    # Makes total calculation for all resources
     def calculate_raw_data
-      recipe = resource(@recipe_name)
-
-      machines = machines_amount(@amount, recipe['out'])
+      recipe    = resource(@recipe_name)
+      machines  = machines_amount(@amount, recipe['out'])
 
       @inputs << calculate_input(recipe, machines)
 
@@ -45,8 +46,7 @@ module SatisfactoryCalculator
     end
 
     def recipes
-      file = File.open('lib/recipes.json')
-      JSON.parse(file.read)
+      @recipes ||= JSON.parse(File.read('lib/recipes.json'))
     end
 
     def machines_amount(amount, out)
@@ -109,11 +109,12 @@ module SatisfactoryCalculator
     end
 
     def total_raw_resources_table(total_data)
-      materials = total_data[:inputs].flatten.select { |row| RAW_RESOURCES.include?(row[:name]) }
+      recipes_names = recipes.map { |r| r['name'] }
+      materials = total_data[:inputs].flatten.select { |row| recipes_names.include?(row[:name]) }
 
       rows = []
 
-      RAW_RESOURCES.each do |resource|
+      recipes_names.each do |resource|
         total = materials.select { |r| r[:name] == resource }.sum { |r| r[:pieces_total] }
         next if total.zero?
 

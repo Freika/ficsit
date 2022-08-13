@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    satisfactory_calculator (0.0.2)
+    satisfactory_calculator (0.0.3)
 
 GEM
   remote: https://rubygems.org/
