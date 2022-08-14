@@ -27,7 +27,7 @@ module Ficsit
     end
 
     def recipes
-      file_path = File.join(File.dirname(__FILE__), 'lib/recipes.json')
+      file_path = File.join(File.dirname(__FILE__), '../recipes.json')
       @recipes ||= JSON.parse(File.read(file_path ))
     end
 
