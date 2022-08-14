@@ -21,6 +21,8 @@ module Ficsit
       data
     end
 
+    private
+
     def calculate_resources
       main_recipe = resource(@recipe_name)
       machines    = machines_amount(@amount, main_recipe['out'])
@@ -44,7 +46,7 @@ module Ficsit
     end
 
     def machines_amount(amount, out)
-      return 0 if out.empty?
+      return 0 if out.empty? || out.find { |c| c['pieces'] == 0 }&.any?
 
       amount.to_f / out.first['pieces']
     end
