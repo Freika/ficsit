@@ -7,13 +7,13 @@ module Ficsit
     end
 
     def call
-      puts draw_tables
+      puts construct_tables
       puts '=========================================================='
       puts total_raw_resources_table
       puts @total_data if @debug
     end
 
-    def draw_tables
+    def construct_tables
       @tables.reverse.map do |data|
         next if data[:rows].empty?
 
