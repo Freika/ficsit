@@ -27,7 +27,8 @@ module Ficsit
     end
 
     def recipes
-      @recipes ||= JSON.parse(File.read('lib/recipes.json'))
+      file_path = File.join(File.dirname(__FILE__), 'lib/recipes.json')
+      @recipes ||= JSON.parse(File.read(file_path ))
     end
 
     def machines_amount(amount, out)
