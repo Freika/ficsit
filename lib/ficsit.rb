@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "ficsit/version"
-require 'pry'
+require_relative 'ficsit/version'
 require 'terminal-table'
 require 'json'
 require_relative 'ficsit/calc'
