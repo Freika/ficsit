@@ -16,19 +16,31 @@ module Ficsit
     end
 
     def call
-      recipe    = resource(@recipe_name)
-      machines  = machines_amount(@amount, recipe['out'])
+      data = calculate_resources
+      data[:total_data] = total_raw_resources(data)
+      data
+    end
 
-      @inputs << calculate_input(recipe, machines)
+    def calculate_resources
+      main_recipe = resource(@recipe_name)
+      machines    = machines_amount(@amount, main_recipe['out'])
+
+      @inputs << calculate_input(main_recipe, machines)
 
       inputs = @inputs.reverse.reject(&:empty?)
 
-      { name: recipe['name'], machines: machines, inputs: inputs }
+      {
+        name: main_recipe['name'],
+        machines: machines,
+        inputs: inputs
+      }
     end
 
     def recipes
+      return @recipes if defined?(@recipes)
+
       file_path = File.join(File.dirname(__FILE__), '../recipes.json')
-      @recipes ||= JSON.parse(File.read(file_path ))
+      @recipes = JSON.parse(File.read(file_path))
     end
 
     def machines_amount(amount, out)
@@ -85,6 +97,22 @@ module Ficsit
       }
 
       @tables << table_data
+    end
+
+    def total_raw_resources(total_data)
+      recipes_names = recipes.map { |r| r['name'] }
+      materials = total_data[:inputs].flatten.select { |row| recipes_names.include?(row[:name]) }
+
+      rows = []
+
+      recipes_names.each do |resource|
+        total = materials.select { |r| r[:name] == resource }.sum { |r| r[:pieces_total] }
+        next if total.zero?
+
+        rows << { name: resource, pieces_total: total }
+      end
+
+      rows
     end
   end
 end

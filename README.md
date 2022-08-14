@@ -6,7 +6,8 @@ This is an attempt to automate production calculation for Satisfactory.
 
 - [x] Unify same resources required on different steps of production to single table to avoid resource diplication
 - [ ] Reverse calculation for electricity: provide amount of resource (coal, crude oil, etc.) to calculate amount of factories to produce energy
-- [ ] Unify same materials required on different steps of production to single table to avoid resource diplication
+- [x] Unify same materials required on different steps of production to single table to avoid resource diplication
+- [x] Move total amount of materials into own hash, separate from basic :inputs
 
 ## Known issues
 

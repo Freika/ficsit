@@ -6,6 +6,3 @@ require 'terminal-table'
 require 'json'
 require_relative 'ficsit/calc'
 require_relative 'ficsit/table'
-
-module Ficsit
-end

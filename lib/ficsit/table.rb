@@ -9,7 +9,7 @@ module Ficsit
     def call
       puts draw_tables
       puts '=========================================================='
-      puts total_raw_resources_table(@total_data)
+      puts total_raw_resources_table
       puts @total_data if @debug
     end
 
@@ -28,17 +28,9 @@ module Ficsit
       end
     end
 
-    def total_raw_resources_table(total_data)
-      recipes_names = recipes.map { |r| r['name'] }
-      materials = total_data[:inputs].flatten.select { |row| recipes_names.include?(row[:name]) }
-
-      rows = []
-
-      recipes_names.each do |resource|
-        total = materials.select { |r| r[:name] == resource }.sum { |r| r[:pieces_total] }
-        next if total.zero?
-
-        rows << [resource, { value: total, alignment: :right }]
+    def total_raw_resources_table
+      rows = @total_data[:total_data].map do |resource|
+        [resource[:name], { value: resource[:pieces_total], alignment: :right }]
       end
 
       Terminal::Table.new(title: 'Total Resources', rows: rows, style: table_style)

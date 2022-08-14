@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ficsit (0.0.5)
+    ficsit (0.0.6)
       pry-byebug
       terminal-table
 
