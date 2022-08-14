@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     ficsit (0.0.3)
+      pry-byebug
+      terminal-table
 
 GEM
   remote: https://rubygems.org/
