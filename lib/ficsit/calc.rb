@@ -27,6 +27,7 @@ module Ficsit
       main_recipe = resource(@recipe_name)
       machines    = machines_amount(@amount, main_recipe['out'])
 
+      # instead of putting it all in one array, we will put it in a hierarchy tree
       @inputs << calculate_input(main_recipe, machines)
 
       inputs = @inputs.reverse.reject(&:empty?)
@@ -58,14 +59,16 @@ module Ficsit
         pieces_total = (machines * input_resource['pieces'])
         recipe_found = resource(input_resource['name'])
         machines_number = machines_amount(pieces_total, recipe_found['out'])
+        inputs = calculate_input(recipe_found, machines_number)
 
         result = {
           name: input_resource['name'],
           pieces_total: pieces_total,
-          machines: machines_number
+          machines: machines_number,
+          inputs: inputs
         }
 
-        @inputs << calculate_input(recipe_found, machines_number)
+        # @inputs << inputs
         table_rows << table_row(input_resource['name'], pieces_total.truncate(2))
 
         result
