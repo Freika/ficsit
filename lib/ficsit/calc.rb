@@ -1,3 +1,5 @@
+require 'hashie'
+
 module Ficsit
   class Calc
     attr_reader :inputs, :tables
@@ -27,7 +29,6 @@ module Ficsit
       main_recipe = resource(@recipe_name)
       machines    = machines_amount(@amount, main_recipe['out'])
 
-      # instead of putting it all in one array, we will put it in a hierarchy tree
       @inputs << calculate_input(main_recipe, machines)
 
       inputs = @inputs.reverse.reject(&:empty?)
@@ -105,19 +106,13 @@ module Ficsit
     end
 
     def total_raw_resources(total_data)
-      recipes_names = recipes.map { |r| r['name'] }
-      materials = total_data[:inputs].flatten.select { |row| recipes_names.include?(row[:name]) }
+      total_data.extend(Hashie::Extensions::DeepFind)
 
-      rows = []
+      flat_data = total_data.deep_select(:inputs).flatten
 
-      recipes_names.each do |resource|
-        total = materials.select { |r| r[:name] == resource }.sum { |r| r[:pieces_total] }
-        next if total.zero?
-
-        rows << { name: resource, pieces_total: total }
+      flat_data.group_by { |a| a[:name] }.map do |name, data|
+        { name: name, pieces_total: data.sum { |a| a[:pieces_total] } }
       end
-
-      rows
     end
   end
 end

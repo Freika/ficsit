@@ -124,12 +124,52 @@
   ],
   "total_data":[
     {
+      "name":"Rotor",
+      "pieces_total":40.0
+    },
+    {
       "name":"Stator",
       "pieces_total":40.0
     },
     {
-      "name":"Rotor",
-      "pieces_total":40.0
+      "name":"Iron Rod",
+      "pieces_total":450.0
+    },
+    {
+      "name":"Screws",
+      "pieces_total":1000.0
+    },
+    {
+      "name":"Iron Ingot",
+      "pieces_total":450.0
+    },
+    {
+      "name":"Iron",
+      "pieces_total":630.0
+    },
+    {
+      "name":"Steel Pipe",
+      "pieces_total":120.0
+    },
+    {
+      "name":"Wire",
+      "pieces_total":320.0
+    },
+    {
+      "name":"Steel Ingot",
+      "pieces_total":180.0
+    },
+    {
+      "name":"Coal",
+      "pieces_total":180.0
+    },
+    {
+      "name":"Copper Ingot",
+      "pieces_total":160.0
+    },
+    {
+      "name":"Copper",
+      "pieces_total":160.0
     }
   ]
 }
