@@ -15,11 +15,13 @@ module Ficsit
       @inputs = []
       @tables = []
       @debug = debug
+      @sankey = []
     end
 
     def call
       data = calculate_resources
       data[:total_data] = total_raw_resources(data)
+      data[:sankey] = finalize_sankey
       data
     end
 
@@ -69,6 +71,9 @@ module Ficsit
           inputs: inputs
         }
 
+        sankey = { source: input_resource['name'], target: recipe['name'], value: pieces_total }
+        @sankey << sankey
+
         # @inputs << inputs
         table_rows << table_row(input_resource['name'], pieces_total.truncate(2))
 
@@ -113,6 +118,26 @@ module Ficsit
       flat_data.group_by { |a| a[:name] }.map do |name, data|
         { name: name, pieces_total: data.sum { |a| a[:pieces_total] } }
       end
+    end
+
+    def finalize_sankey
+      # I just want to play Satisfactory already but I have to finish my
+      # calculator first or I will be irritated because I'll have to use
+      # Google Sheets for calculations again and it's not scalable.
+      resources = (@sankey.map { |r| r[:source] } + @sankey.map { |r| r[:target] }).uniq.sort
+      nodes = resources.map { |name| { name: name } }
+
+      replacer = {}
+      nodes.each.with_index { |resource, index| replacer[resource[:name]] = index }
+
+      links = @sankey.each do |resource|
+        original_source = resource[:source]
+        original_target = resource[:target]
+        resource[:source] = replacer[original_source]
+        resource[:target] = replacer[original_target]
+      end
+
+      { nodes: nodes, links: links }
     end
   end
 end
